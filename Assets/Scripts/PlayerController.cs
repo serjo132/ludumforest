@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         private set
         {
             _isMoving = value;
-            animator.SetBool("isMoving", value);
+            animator.SetBool(AnimationStrings.isMoving, value);
         }
     }
     Rigidbody2D rb;
@@ -29,13 +29,18 @@ public class PlayerController : MonoBehaviour
 
     public bool _isFacingRight = true;
 
-    public bool IsFacingRight { get { return _isFacingRight; } private set { 
-        if(_isFacingRight != value)
+    public bool IsFacingRight
+    {
+        get { return _isFacingRight; }
+        private set
+        {
+            if (_isFacingRight != value)
             {
                 transform.localScale *= new Vector2(-1, 1);
             }
             _isFacingRight = value;
-        } }
+        }
+    }
 
     private void Awake()
     {
@@ -70,11 +75,11 @@ public class PlayerController : MonoBehaviour
 
     private void SetFacingDirection(Vector2 moveInput)
     {
-        if(moveInput.x > 0 && !IsFacingRight)
+        if (moveInput.x > 0 && !IsFacingRight)
         {
             IsFacingRight = true;
-        } 
-        else if(moveInput.x < 0 && IsFacingRight)
+        }
+        else if (moveInput.x < 0 && IsFacingRight)
         {
             IsFacingRight = false;
         }
