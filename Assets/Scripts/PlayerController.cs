@@ -3,11 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 5f;
     Vector2 moveInput;
+    TouchingDirections touchingDirections;
+
+    public float CurrentMoveSpeed{get
+        {
+            if (IsMoving && !touchingDirections.IsOnWall)
+            {
+                return walkSpeed;
+            }
+            else 
+            {
+                return 0;
+            }
+        }
+           
+    }
 
     [SerializeField]
     private bool _isMoving = false;
@@ -26,6 +41,7 @@ public class PlayerController : MonoBehaviour
     }
     Rigidbody2D rb;
     Animator animator;
+    public float jumpImpulse = 10f;
 
     public bool _isFacingRight = true;
 
@@ -46,22 +62,14 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-    }
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        touchingDirections = GetComponent<TouchingDirections>();
     }
 
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+
+        animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -82,6 +90,15 @@ public class PlayerController : MonoBehaviour
         else if (moveInput.x < 0 && IsFacingRight)
         {
             IsFacingRight = false;
+        }
+    }
+    public void OnJump(InputAction.CallbackContext context)
+    {
+
+        if(context.started && touchingDirections.IsGrounded)
+        {
+            animator.SetTrigger(AnimationStrings.jump);
+            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
         }
     }
 }
