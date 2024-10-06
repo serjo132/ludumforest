@@ -27,6 +27,16 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
+    public bool _isFacingRight = true;
+
+    public bool IsFacingRight { get { return _isFacingRight; } private set { 
+        if(_isFacingRight != value)
+            {
+                transform.localScale *= new Vector2(-1, 1);
+            }
+            _isFacingRight = value;
+        } }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -62,10 +72,11 @@ public class PlayerController : MonoBehaviour
     {
         if(moveInput.x > 0 && !IsFacingRight)
         {
-
-        } else if(moveInput.x < 0 && IsFacingRight)
+            IsFacingRight = true;
+        } 
+        else if(moveInput.x < 0 && IsFacingRight)
         {
-
+            IsFacingRight = false;
         }
     }
 }
