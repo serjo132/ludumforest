@@ -15,8 +15,4 @@ MonoBehaviour:
   dialogue:
   - 'fitst '
   - second
-  responses:
-  - responseText: i shat myself
-    dialogueObject: {fileID: 11400000, guid: adaad469866327e4f8981a68798d73d9, type: 2}
-  - responseText: camed
-    dialogueObject: {fileID: 11400000, guid: a78b8f4c94dea8641806abecf61bf57a, type: 2}
+  responses: []

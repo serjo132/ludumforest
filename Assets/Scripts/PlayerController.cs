@@ -6,6 +6,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private DialogueUI dialogueUI;
+    public DialogueUI DialogueUI => dialogueUI;
+
+    public IInteractable Interactable { get; set; }
+
     public float walkSpeed = 5f;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
@@ -67,9 +72,25 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+       
         rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
+
+        
+    }
+
+    public void Update()
+    {
+        if (dialogueUI.IsOpen) return;
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (Interactable != null)
+            {
+                Interactable.Interact(this);
+            }
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
