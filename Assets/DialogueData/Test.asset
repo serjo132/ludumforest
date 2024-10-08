@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   dialogue:
-  - 'fitst '
-  - second
+  - What the heck is happening here again?! Where did YOU fall from? I swear to the
+    gods, soon anvils will be falling on me!
+  - 'I got lost in the forest... Can you tell me the way from here?
+
+    Blacksmith:
+
+'
+  - You're in big trouble. First, go right until you see a door in the tree. While
+    you're at it, chase the toad out of the way, it's always blocking the passage
   responses: []

@@ -13,5 +13,13 @@ MonoBehaviour:
   m_Name: Test 1
   m_EditorClassIdentifier: 
   dialogue:
-  - bla bla bla
+  - 'Finally, I found a new species to study! All that''s left is to go to the habitat
+    and find this toad...
+
+'
+  - "I found an article about the only habitat. They write that it's some kind of
+    a \u2018mystical\u2019 forest with a swamp, about which there are many rumors\u2026
+    \u201CAn inexperienced researcher can get lost there\u201D. Since there is no
+    other habitat, and I'm already experienced in searching for the toads."
+  - It's time to call my research colleagues and schedule a time to get together.
   responses: []

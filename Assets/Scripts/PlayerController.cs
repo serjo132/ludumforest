@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     }
     Rigidbody2D rb;
     Animator animator;
-    public float jumpImpulse = 10f;
+    public float jumpImpulse = 20f;
 
     public bool _isFacingRight = true;
 
